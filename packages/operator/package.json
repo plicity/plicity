@@ -1,7 +1,7 @@
 {
   "name": "@plicity/operator",
   "private": false,
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "PLICITY operator",
   "main": "src/index.js",
   "scripts": {
@@ -16,7 +16,7 @@
   "author": "Philipp Renoth <renoth@wildoak.de>",
   "license": "MIT",
   "dependencies": {
-    "@plicity/operator-ui": "^1.0.0-alpha.2",
+    "@plicity/operator-ui": "^1.0.0-alpha.3",
     "bytes": "^3.1.0",
     "cli-truncate": "^2.1.0",
     "dotenv": "^8.2.0",
