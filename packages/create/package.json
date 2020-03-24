@@ -1,14 +1,13 @@
 {
   "name": "@plicity/create",
   "private": false,
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "PLICITY create",
   "main": "create.js",
   "bin": {
     "create-plicity": "create.js"
   },
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [],
   "author": "Philipp Renoth <renoth@wildoak.de>",
   "license": "MIT",
