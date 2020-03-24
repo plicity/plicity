@@ -40,9 +40,13 @@ const mod = {
     await gitlab.ProjectBadges.add(gitlabProjectId, {
       name: 'plicity',
       link_url: `https://${host}`,
-      image_url: `https://img.shields.io/badge/plicity-${version}-%23b8007d`
+      image_url: `https://img.shields.io/badge/plicity-${shieldsIoCleanVersion(version)}-%23b8007d`
     });
   })
 };
 
 module.exports = mod;
+
+function shieldsIoCleanVersion(version) {
+  return encodeURIComponent(`${version}`.replace('-', '--').replace('_', '__'));
+}
