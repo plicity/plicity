@@ -44,5 +44,6 @@
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1",
     "swagger-client": "^3.10.0"
-  }
+  },
+  "gitHead": "a7e4cef98b2ed7b818262dd675d6b7c9fb5579a8"
 }

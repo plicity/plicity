@@ -35,5 +35,6 @@
     "pino-pretty": "^3.6.1",
     "tar-stream": "^2.1.1",
     "yargs": "^15.1.0"
-  }
+  },
+  "gitHead": "a7e4cef98b2ed7b818262dd675d6b7c9fb5579a8"
 }

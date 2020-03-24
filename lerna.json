@@ -11,5 +11,8 @@
   },
   "packages": [
     "packages/*"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
