@@ -1,0 +1,108 @@
+openapi: "3.0.0"
+info:
+  version: "1.0.0"
+  title: Plicity Operator "Operator v1"
+  license:
+    name: MIT
+paths:
+  /api/operator/v1/branches:
+    get:
+      operationId: getBranches
+      tags:
+        - operator
+      responses:
+        '200':
+          description: some
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/DeployedBranches"
+  /api/operator/v1/branches/{branch}/build:
+    post:
+      operationId: buildBranch
+      tags:
+        - operator
+      responses:
+        '200':
+          description: some
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BuildResponse"
+    parameters:
+      - name: branch
+        in: path
+        required: true
+        schema:
+          type: string
+  /api/operator/v1/build:
+    post:
+      operationId: buildOperator
+      tags:
+        - operator
+      responses:
+        '200':
+          description: some
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BuildResponse"
+  /api/operator/v1/config:
+    get:
+      operationId: getConfig
+      tags:
+        - operator
+      responses:
+        '200':
+          description: some
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Config"
+components:
+  schemas:
+    DeployedBranches:
+      type: array
+      items:
+        $ref: "#/components/schemas/DeployedBranch"
+    DeployedBranch:
+      type: object
+      required:
+        - name
+        - commit
+      properties:
+        name:
+          type: string
+        commit:
+          type: string
+    BuildResponse:
+      type: object
+      required:
+        - message
+        - millis
+      properties:
+        message:
+          type: string
+        millis:
+          type: number
+          format: double
+    Config:
+      type: object
+      required:
+        - repository
+        - cloud
+      properties:
+        repository:
+          $ref: "#/components/schemas/ConfigSystem"
+        cloud:
+          $ref: "#/components/schemas/ConfigSystem"
+    ConfigSystem:
+      type: object
+      required:
+        - name
+        - version
+      properties:
+        name:
+          type: string
+        version:
+          type: string

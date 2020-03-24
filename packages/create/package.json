@@ -1,0 +1,22 @@
+{
+  "name": "@plicity/create",
+  "private": false,
+  "version": "1.0.0-alpha.1",
+  "description": "PLICITY create",
+  "main": "create.js",
+  "bin": {
+    "create-plicity": "create.js"
+  },
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "Philipp Renoth <renoth@wildoak.de>",
+  "license": "MIT",
+  "dependencies": {
+    "inquirer": "^7.1.0",
+    "nunjucks": "^3.2.1",
+    "ora": "^4.0.3",
+    "recursive-copy": "^2.0.10",
+    "yargs": "^15.3.1"
+  }
+}

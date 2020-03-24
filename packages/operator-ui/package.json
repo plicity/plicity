@@ -1,0 +1,48 @@
+{
+  "name": "@plicity/operator-ui",
+  "private": false,
+  "version": "1.0.0-alpha.1",
+  "license": "MIT",
+  "main": "main.js",
+  "scripts": {
+    "start": "per-env",
+    "start:production": "npm run -s serve",
+    "start:development": "npm run -s dev",
+    "build": "preact build --no-esm --prerender=false --service-worker=false",
+    "serve": "preact build --no-esm && sirv build --cors --single",
+    "dev": "preact watch",
+    "lint": "eslint src",
+    "test": "echo no tests",
+    "prepublish": "npm run build"
+  },
+  "author": "Philipp Renoth <renoth@wildoak.de>",
+  "eslintConfig": {
+    "extends": "preact",
+    "ignorePatterns": [
+      "build/"
+    ]
+  },
+  "devDependencies": {
+    "bootstrap": "^4.4.1",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-preact-pure": "^2.0.0",
+    "eslint": "^6.0.1",
+    "eslint-config-preact": "^1.1.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.9.0",
+    "jest-preset-preact": "^1.0.0",
+    "node-sass": "^4.13.1",
+    "per-env": "^1.0.2",
+    "preact-cli": "^3.0.0-rc.10",
+    "preact-render-spy": "^1.2.1",
+    "sass-loader": "^8.0.2",
+    "sirv-cli": "^0.4.5"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "preact": "^10.3.2",
+    "preact-render-to-string": "^5.1.4",
+    "preact-router": "^3.2.1",
+    "swagger-client": "^3.10.0"
+  }
+}

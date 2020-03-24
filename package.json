@@ -1,0 +1,12 @@
+{
+  "name": "plicity",
+  "version": "1.0.0",
+  "description": "PLICITY",
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "Philipp Renoth <renoth@wildoak.de>",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {}
+}

@@ -1,0 +1,8 @@
+{
+  "name": "plicity.io",
+  "short_name": "plicity_io",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff"
+}

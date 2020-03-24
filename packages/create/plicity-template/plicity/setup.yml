@@ -1,0 +1,131 @@
+apiVersion: v1
+kind: Template
+objects:
+
+################################################################################
+#
+# APP
+#
+################################################################################
+
+- kind: ImageStream
+  apiVersion: image.openshift.io/v1
+  metadata:
+    name: ${NAME}-${BRANCH_NAME_NORMALIZED}
+    labels:
+      app.plicity.io/name: ${NAME}
+      app.plicity.io/branch: ${NAME}-${BRANCH_NAME_NORMALIZED}
+
+- kind: BuildConfig
+  apiVersion: v1
+  metadata:
+    name: ${NAME}-${BRANCH_NAME_NORMALIZED}
+    labels:
+      app.plicity.io/name: ${NAME}
+      app.plicity.io/branch: ${NAME}-${BRANCH_NAME_NORMALIZED}
+  spec:
+    runPolicy: Serial
+    triggers:
+    - type: ImageChange
+    - type: ConfigChange
+    source:
+      git:
+        uri: ${GITLAB_REPOSITORY_URL}
+      contextDir: app
+    strategy:
+      type: Docker
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${NAME}-${BRANCH_NAME_NORMALIZED}:latest
+
+- kind: DeploymentConfig
+  apiVersion: v1
+  metadata:
+    name: ${NAME}-${BRANCH_NAME_NORMALIZED}
+    labels:
+      app: ${NAME}-${BRANCH_NAME_NORMALIZED}
+      app.plicity.io/name: ${NAME}
+      app.plicity.io/branch: ${NAME}-${BRANCH_NAME_NORMALIZED}
+  spec:
+    replicas: 1
+    selector:
+      app: ${NAME}-${BRANCH_NAME_NORMALIZED}
+      deploymentconfig: ${NAME}-${BRANCH_NAME_NORMALIZED}
+    template:
+      metadata:
+        labels:
+          app: ${NAME}-${BRANCH_NAME_NORMALIZED}
+          deploymentconfig: ${NAME}-${BRANCH_NAME_NORMALIZED}
+          app.plicity.io/name: ${NAME}
+          app.plicity.io/branch: ${NAME}-${BRANCH_NAME_NORMALIZED}
+      spec:
+        containers:
+        - name: ${NAME}-${BRANCH_NAME_NORMALIZED}
+          image: ${NAME}-${BRANCH_NAME_NORMALIZED}:latest
+          ports:
+          - containerPort: 3000
+            protocol: TCP
+          env:
+          - name: BRANCH
+            value: ${BRANCH_NAME_NORMALIZED}
+    triggers:
+      - type: ImageChange
+        imageChangeParams:
+          automatic: true
+          containerNames:
+          - ${NAME}-${BRANCH_NAME_NORMALIZED}
+          from:
+            kind: ImageStreamTag
+            name: ${NAME}-${BRANCH_NAME_NORMALIZED}:latest
+
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: ${NAME}-${BRANCH_NAME_NORMALIZED}
+    labels:
+      app: ${NAME}-${BRANCH_NAME_NORMALIZED}
+      app.plicity.io/name: ${NAME}
+      app.plicity.io/branch: ${NAME}-${BRANCH_NAME_NORMALIZED}
+  spec:
+    ports:
+    - port: 3000
+      protocol: TCP
+      targetPort: 3000
+    selector:
+      app: ${NAME}-${BRANCH_NAME_NORMALIZED}
+      deploymentconfig: ${NAME}-${BRANCH_NAME_NORMALIZED}
+    sessionAffinity: None
+    type: ClusterIP
+            
+- kind: Route
+  apiVersion: v1
+  metadata:
+    name: ${NAME}-${BRANCH_NAME_NORMALIZED}
+    labels:
+      app: ${NAME}-${BRANCH_NAME_NORMALIZED}
+      app.plicity.io/name: ${NAME}
+      app.plicity.io/branch: ${NAME}-${BRANCH_NAME_NORMALIZED}
+  spec:
+    port:
+      targetPort: 3000
+    tls:
+      termination: edge
+    to:
+      kind: Service
+      name: ${NAME}-${BRANCH_NAME_NORMALIZED}
+    
+
+################################################################################
+#
+# PARAMETERS
+#
+################################################################################
+
+parameters:
+  - name: GITLAB_REPOSITORY_URL
+    required: true
+  - name: BRANCH_NAME_NORMALIZED
+    required: true
+  - name: NAME
+    required: true
