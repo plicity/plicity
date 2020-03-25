@@ -2,7 +2,7 @@
   "name": "@plicity/operator",
   "private": false,
   "version": "1.0.0-alpha.4",
-  "description": "PLICITY operator",
+  "description": "Create your own build pipeline in OpenShift with Gitlab",
   "main": "src/index.js",
   "scripts": {
     "cli": "node src/cli.js",
@@ -12,9 +12,25 @@
     "pli": "./src/cli.js",
     "plicity": "./src/cli.js"
   },
-  "keywords": [],
+  "keywords": [
+    "build",
+    "openshift",
+    "gitlab"
+  ],
   "author": "Philipp Renoth <renoth@wildoak.de>",
   "license": "MIT",
+  "homepage": "https://github.com/plicity/plicity",
+  "bugs": {
+    "url": "https://github.com/plicity/plicity/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plicity/plicity",
+    "directory": "packages/operator"
+  },
+  "engines": {
+    "node": ">10.0.0"
+  },
   "dependencies": {
     "@plicity/operator-ui": "^1.0.0-alpha.3",
     "bytes": "^3.1.0",

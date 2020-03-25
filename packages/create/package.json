@@ -2,15 +2,31 @@
   "name": "@plicity/create",
   "private": false,
   "version": "1.0.0-alpha.3",
-  "description": "PLICITY create",
+  "description": "npm init package for build pipelines in OpenShift with Gitlab",
   "main": "create.js",
   "bin": {
     "create-plicity": "create.js"
   },
   "scripts": {},
-  "keywords": [],
+  "keywords": [
+    "build",
+    "openshift",
+    "gitlab"
+  ],
   "author": "Philipp Renoth <renoth@wildoak.de>",
   "license": "MIT",
+  "homepage": "https://github.com/plicity/plicity",
+  "bugs": {
+    "url": "https://github.com/plicity/plicity/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plicity/plicity",
+    "directory": "packages/create"
+  },
+  "engines": {
+    "node": ">10.0.0"
+  },
   "dependencies": {
     "inquirer": "^7.1.0",
     "nunjucks": "^3.2.1",

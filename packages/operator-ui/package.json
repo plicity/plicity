@@ -2,7 +2,22 @@
   "name": "@plicity/operator-ui",
   "private": false,
   "version": "1.0.0-alpha.3",
+  "description": "PLICITY operator UI",
   "license": "MIT",
+  "homepage": "https://github.com/plicity/plicity",
+  "keywords": [
+    "build",
+    "openshift",
+    "gitlab"
+  ],
+  "bugs": {
+    "url": "https://github.com/plicity/plicity/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plicity/plicity",
+    "directory": "packages/operator-ui"
+  },
   "main": "main.js",
   "scripts": {
     "start": "per-env",

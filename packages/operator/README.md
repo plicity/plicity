@@ -1,5 +1,5 @@
-# PLICITY - `operator-ui` package
+# PLICITY - `operator` package
 
-UI component of the PLICITY Operator for internal use.
+The PLICITY Operator implementation currently for OpenShit with Gitlab.
 
 Refer to the [GitHub](https://github.com/plicity/plicity) or [NPM](https://www.npmjs.com/package/plicity) PLICITY documentation if you want to read more.

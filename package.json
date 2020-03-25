@@ -1,12 +1,24 @@
 {
   "name": "plicity",
   "version": "1.0.0",
-  "description": "PLICITY",
+  "description": "Create your own build pipeline in OpenShift with Gitlab",
   "scripts": {
   },
-  "keywords": [],
+  "keywords": [
+    "build",
+    "openshift",
+    "gitlab"
+  ],
   "author": "Philipp Renoth <renoth@wildoak.de>",
   "license": "MIT",
+  "homepage": "https://github.com/plicity/plicity",
+  "bugs": {
+    "url": "https://github.com/plicity/plicity/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plicity/plicity"
+  },
   "devDependencies": {},
   "dependencies": {}
 }
