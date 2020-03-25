@@ -1,7 +1,7 @@
 {
   "name": "@plicity/create",
   "private": false,
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "npm init package for build pipelines in OpenShift with Gitlab",
   "main": "create.js",
   "bin": {
