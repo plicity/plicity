@@ -91,7 +91,7 @@ const methods = {
   async describe(type, name) {
     await oc('describe', type, name).promise;
   },
-  async deleteAll(selector, {all = true, secrets = true, configmaps = true, serviceaccounts = true, rolebindings = true} = {}) {
+  async deleteAll(selector, {all = true, secrets = true, configmaps = true, serviceaccounts = false, rolebindings = false} = {}) {
     const proms = [];
     if (all) {
       proms.push(oc('delete', 'all', '--selector', selector).promise);

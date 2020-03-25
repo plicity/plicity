@@ -20,7 +20,10 @@ const mod = {
   handler: wrap(async ({name, openshiftProject, openshiftUrl, openshiftToken, gitlabHost, gitlabToken, gitlabProjectId}) => {
     await openshift.oc.login(openshiftUrl, openshiftToken);
     await openshift.oc.project(openshiftProject);
-    await openshift.oc.deleteAll(`app.plicity.io/name=${name}`);
+    await openshift.oc.deleteAll(`app.plicity.io/name=${name}`, {
+      rolebindings: true,
+      serviceaccounts: true
+    });
 
     const gitlab = createGitlab(gitlabHost, gitlabToken);
 

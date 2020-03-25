@@ -95,7 +95,7 @@ module.exports = class RepositoryWatcher {
           await onDeleteBranch(event);
         }
 
-        await ops.updateDeployedBranches(this._name, {[normalizedBranch]: null});
+        await ops.updateDeployedBranches(this._name, {[branchNormalized]: null});
         continue;
       }
     }
