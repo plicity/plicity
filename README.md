@@ -1,10 +1,85 @@
-# PLICITY
+# PLICITY 🏗
 
-An Open Source Node.js Cloud-Operator for Development by [consol](https://www.consol.de).
+An Open Source Node.js Cloud-Operator for Development supported by [consol](https://www.consol.de) with 💛.
 
-This project is "work in progress". Many features are still missing. Same for security. Don't use this version in production.
+This project is "work in progress" 🚧. Many features are still missing. Same for security. ⚠ Don't use this version in production.
 
 ![plicity logo](./doc/plicity-logo.png)
+
+## 🤔 What is it?
+
+You and your team 👥
+
+- ✔ is developing a web application in the ☁ cloud?
+- ✔ use branches for parallel 🔃 feature development?
+
+... great, maybe PLICITY can help you! 👨‍⚕️
+
+The idea is very simple 💡
+
+- 🔍 PLICITY will watch your Git repository
+- 🔧 every time a branch is created, it will trigger a hook
+- 🚮 same for deleting or updating a branch
+
+A simple idea needs simple implementation ✌:
+
+- 📃 the operator is Node.js script in your project
+- 🕶 it will start everything and implement the hooks
+- 👌 hooks are simple JS callbacks
+
+```javascript
+operator.start({
+  onCreateBranch:     setup,      // a new git branch is created
+  onChangeBranchHead: startBuild, // push to a branch
+  onDeleteBranch:     deleteAll,  // delete a remote branch
+  onServerBuild:      startBuild  // press "Build" in the Operator UI
+});
+```
+
+**onCreateBranch**
+
+When a new git branch is created, we could `oc process -f ...yml | oc apply -f -` a template which will deploy everything needed for the application? It should create an `ImageStream`, `BuildConfig`, ..., maybe also a new isolated Database and of course a `Route` because we want to access it.
+
+```javascript
+async function setup(event) {
+  await oc.project(event.args.openshiftProject);
+  await oc.applyTemplate(`${__dirname}/setup.yml`, {
+    GITLAB_REPOSITORY_URL: event.gitlabRepositoryUrl, // needed for BuildConfig
+    BRANCH_NAME_NORMALIZED: event.branchNormalized,   // needed for BuildConfig
+    NAME: event.args.name // used as prefix for all resource names and labels
+  });
+}
+```
+
+**onChangeBranchHead, onServerBuild**
+
+When a branch has a new commit or someone presses "Build" in the Operator UI, we simply want to start the build.
+
+```javascript
+async function startBuild(event) {
+  await oc.project(event.args.openshiftProject);
+  await oc.startBuild(`${event.args.name}-${event.branchNormalized}`, {commit: event.commit});
+}
+```
+
+**onDeleteBranch**
+
+When a branch is deleted, we want to delete everything we set up in `setup`. We use labels, that we can delete everything with one command.
+
+```javascript
+async function deleteAll(event) {
+  await oc.project(event.args.openshiftProject);
+  await oc.deleteAll(`app.plicity.io/branch=${event.args.name}-${event.branchNormalized}`);
+}
+```
+
+**Conclusion**
+
+Of course you're free to do more in the hooks, like running smoke 🚬 or ⚙ integration tests or create 📫 notifications on your Slack channel.
+
+You run the operator. You implement the hooks. Everything is under your control. Create your very best build pipeline for development. PLICITY will ♥ to support you and your team with 🚀 development, 🧪 testing and finally ⛵ ship faster.
+
+Now give it a try and please give feedback 😬.
 
 ## Install
 
@@ -171,17 +246,18 @@ npm init @plicity <target dir> \
 
 ## Security
 
-Good things first:
+Good things first 😬:
 
+- 100% On-Premise in your Private or Public Cloud.
 - No OpenShift cluster admin rights needed.
 - Your OpenShift token **is not** exposed. The Operator will run with a special `ServiceAccount` with a `RoleBinding` allowed to control your project. Your token is just used for the initial setup or if you want to run the Operator local, e.g. updating it.
 
-Need of improvement:
+Need of improvement 🤐:
 
 - Gitlab project needs to be public. Yet no authentication implemented.
 - We give full Gitlab access to the Operator. Assumption is that the only API call we need at current is to add and remove the badge to the Gitlab project. This may change when implementing authentication for OpenShift for Gitlab.
 - Your Gitlab Token is exposed as OpenShift secret. Everyone with access to your project can use that Gitlab token.
 
-Grey zone:
+Grey zone 🤫:
 
 - download OpenShift client `oc` from https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz. Customizable alternative location to be implemented.
