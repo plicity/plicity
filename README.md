@@ -262,7 +262,14 @@ Grey zone 🤫:
 
 - download OpenShift client `oc` from https://github.com/openshift/origin/releases/download/v3.11.0/openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit.tar.gz. Customizable alternative location to be implemented.
 
+## Contribution
+
+ *alphabetical order*
+
+- Renoth, Philipp: core dev ([Twitter](https://twitter.com/daaitch), [GitHub](https://github.com/DaAitch))
+- Tillian, Valeska: logo design ([Xing](https://www.xing.com/profile/Valeska_Tillian))
+
 ## Known Issues
 
-- Will not work on Windows and probably not work MacOS
-- Only OpenShift and Gitlab supported ... version TODO(prenoth)
+- Will not work on Windows and probably not on MacOS
+- Only OpenShift compatible with oc v3.11.0 and Gitlab supported

@@ -1,6 +1,6 @@
 {
   "name": "plicity",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Create your own build pipeline in OpenShift with Gitlab",
   "scripts": {
   },
