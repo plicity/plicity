@@ -1,7 +1,7 @@
 {
   "name": "@plicity/operator",
   "private": false,
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "description": "Create your own build pipeline in OpenShift with Gitlab",
   "main": "src/index.js",
   "scripts": {
