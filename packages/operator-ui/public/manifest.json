@@ -1,9 +1,15 @@
 {
   "name": "PLICITY",
-  "short_name": "plicity",
+  "short_name": "PLICITY",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#fff",
-  "theme_color": "#333745"
+  "background_color": "#333745",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
