@@ -45,7 +45,11 @@ module.exports = class Operator {
 
     try {
       while (true) {
-        await this._repoWatcher.update(updateOpts);
+        try {
+          await this._repoWatcher.update(updateOpts);
+        } catch (e) {
+          logger.error('failed repo watcher update with error %o', e);
+        }
 
         logger.debug('wait 10s');
         await wait(10000);

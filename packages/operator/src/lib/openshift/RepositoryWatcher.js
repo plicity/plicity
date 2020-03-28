@@ -42,6 +42,12 @@ module.exports = class RepositoryWatcher {
 
     await oc.login(this._openshiftUrl, this._openshiftToken);
     await oc.project(this._openshiftProject);
+
+    // check project initialized
+    const {name} = await oc.getConfigData(`${this._name}-config`);
+    if (name !== this._name) {
+      throw new Error('project not seems to be initialized for plicity');
+    }
   }
 
   async update({
