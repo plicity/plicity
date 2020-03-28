@@ -2,3 +2,4 @@
 /.env
 /oc
 /.kube
+/package-lock.json

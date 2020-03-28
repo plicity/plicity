@@ -1,0 +1,9 @@
+{
+  "name": "PLICITY",
+  "short_name": "plicity",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff",
+  "theme_color": "#333745"
+}

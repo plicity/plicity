@@ -1,0 +1,23 @@
+@import "./custom-bootstrap.scss";
+@import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
+
+.transparent {
+  opacity: 0;
+  transform: translate(0, 5px);
+  transition: all 350ms ease-out;
+  // transition: transform 200ms ease-out;
+}
+
+.appear {
+  opacity: 1;
+  transform: translate(0px, 0px);
+}
+
+.version {
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.commit {
+  font-family: monospace;
+}

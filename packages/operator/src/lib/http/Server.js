@@ -11,7 +11,7 @@ module.exports = class Server {
     this._port = port;
   }
 
-  async start({useUiProxy, onServerBuild, name, gitlab}) {
+  async start({noUi, onServerBuild, name, gitlab}) {
     this._app = fastify({return503OnClosing: true});
 
     // this._app.server.on('connection', socket => {
@@ -23,17 +23,10 @@ module.exports = class Server {
 
     logger.info('register plugins');
     this._app
-      .register(plugins.operator, {onServerBuild, name, gitlab})
+      .register(plugins.operator, {noUi, onServerBuild, name, gitlab})
     ;
-
     
-    if (useUiProxy) {
-      logger.info('register fastify-http-proxy using UI proxy %s', useUiProxy);
-      this._app.register(require('fastify-http-proxy'), {
-        upstream: useUiProxy,
-        http2: false
-      });
-    } else {
+    if (!noUi) {
       const root = path.normalize(`${require('@plicity/operator-ui')}/build`);
       logger.info('register fastify-static serving UI from %s', root);
       this._app.register(require('fastify-static'), {

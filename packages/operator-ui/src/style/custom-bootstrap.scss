@@ -8,17 +8,7 @@ $danger:        #fe0026;
 $light:         #f7f9ff;
 $dark:          #333745;
 
-// $primary:       #4B93B1;
-// $secondary:     #D11E4D;
-// $success:       #157F1F;
-// $info:          #731DD8;
-// $warning:       #EE8434;
-// $danger:        #F9564F;
-// $light:         #F4FDD9;
-// $dark:          #333745;
-
 // primary is too bright
 $nav-pills-link-active-bg: mix($primary, $dark, 30%);
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-@import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";

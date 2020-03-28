@@ -20,45 +20,43 @@
   },
   "main": "main.js",
   "scripts": {
-    "start": "per-env",
-    "start:production": "npm run -s serve",
-    "start:development": "npm run -s dev",
-    "build": "preact build --no-esm --prerender=false --service-worker=false",
-    "serve": "preact build --no-esm && sirv build --cors --single",
-    "dev": "preact watch",
-    "lint": "eslint src",
-    "test": "echo no tests",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "prepublish": "npm run build"
   },
   "author": "Philipp Renoth <renoth@wildoak.de>",
-  "eslintConfig": {
-    "extends": "preact",
-    "ignorePatterns": [
-      "build/"
-    ]
-  },
-  "devDependencies": {
-    "bootstrap": "^4.4.1",
-    "enzyme": "^3.10.0",
-    "enzyme-adapter-preact-pure": "^2.0.0",
-    "eslint": "^6.0.1",
-    "eslint-config-preact": "^1.1.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^24.9.0",
-    "jest-preset-preact": "^1.0.0",
-    "node-sass": "^4.13.1",
-    "per-env": "^1.0.2",
-    "preact-cli": "^3.0.0-rc.10",
-    "preact-render-spy": "^1.2.1",
-    "sass-loader": "^8.0.2",
-    "sirv-cli": "^0.4.5"
-  },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.1",
-    "preact": "^10.3.2",
-    "preact-render-to-string": "^5.1.4",
-    "preact-router": "^3.2.1",
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "bootstrap": "^4.4.1",
+    "node-sass": "^4.13.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
     "swagger-client": "^3.10.0"
   },
-  "gitHead": "a7e4cef98b2ed7b818262dd675d6b7c9fb5579a8"
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "gitHead": "a7e4cef98b2ed7b818262dd675d6b7c9fb5579a8",
+  "devDependencies": {
+    "http-proxy-middleware": "^1.0.3"
+  }
 }

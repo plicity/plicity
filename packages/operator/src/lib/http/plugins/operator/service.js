@@ -3,6 +3,7 @@ const ms = require('ms');
 const ops = require('../../../openshift/ops');
 const oc = require('../../../openshift/oc');
 const {Gitlab} = require('gitlab');
+const {version: plicityVersion} = require('../../../../../package.json');
 
 module.exports = createService;
 
@@ -67,12 +68,19 @@ function createService({name, onServerBuild, gitlab}) {
       ]);
 
       reply.send({
+        operator: {
+          name: 'PLICITY',
+          type: 'plicity',
+          version: plicityVersion
+        },
         repository: {
-          name: 'gitlab',
+          name: 'Gitlab',
+          type: 'gitlab',
           version: `${gitlabVersion.version}@${gitlabVersion.revision}`
         },
         cloud: {
-          name: 'openshift',
+          name: 'OpenShift',
+          type: 'openshift',
           version: ocVersion
         }
       });

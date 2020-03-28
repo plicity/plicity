@@ -25,7 +25,7 @@ module.exports = class Operator {
   }) {
     await this._repoWatcher.initialize();
     await this._server.start({
-      useUiProxy: this._args.useUiProxy,
+      noUi: this._args.noUi,
       onServerBuild: async branch => {
         await onServerBuild({
           branch,

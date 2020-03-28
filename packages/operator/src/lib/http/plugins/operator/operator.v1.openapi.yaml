@@ -89,9 +89,12 @@ components:
     Config:
       type: object
       required:
+        - operator
         - repository
         - cloud
       properties:
+        operator:
+          $ref: "#/components/schemas/ConfigSystem"
         repository:
           $ref: "#/components/schemas/ConfigSystem"
         cloud:
@@ -100,9 +103,12 @@ components:
       type: object
       required:
         - name
+        - type
         - version
       properties:
         name:
+          type: string
+        type:
           type: string
         version:
           type: string
