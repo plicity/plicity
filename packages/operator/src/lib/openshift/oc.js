@@ -67,14 +67,6 @@ const methods = {
 
     await Promise.all([ocProcess.promise, ocApply.promise]);
   },
-  async deleteTemplate(templatePath, parameters = {}) {
-    const ocProcess = oc('process', '-f', templatePath, ...toTemplateArgs(parameters));
-    const ocDelete   = oc('delete', '-f', '-');
-
-    pipe(ocProcess, ocDelete);
-
-    await Promise.all([ocProcess.promise, ocDelete.promise]);
-  },
   async get(type, name, {template = undefined, output = undefined}) {
     const args = [];
     if (template) {

@@ -1,6 +1,4 @@
 
-const DEFAULT_DOCKERFILE_DIR = 'plicity';
-
 module.exports = {
   wellKnown: {
     name:                       demandOption => ({name: {demandOption}}),
@@ -13,6 +11,6 @@ module.exports = {
     logLevel:                   () => ({logLevel: {default: 'info'}}),
     port:                       demandOption => ({port: {demandOption}}),
     noUi:                       demandOption => ({ui: {demandOption, type: 'boolean'}}),
-    dockerfileDir:              demandOption => ({dockerfileDir: {demandOption, default: DEFAULT_DOCKERFILE_DIR}}),
+    dockerfileDir:              demandOption => ({dockerfileDir: {demandOption, default: '.plicity'}}),
   }
 };

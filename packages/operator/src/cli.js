@@ -2,7 +2,7 @@
 
 process.env.PLICITY_LOG_PRETTY = 'true';
 
-require('dotenv').config();
+require('./lib/env');
 const yargs = require('./lib/yargs');
 
 yargs

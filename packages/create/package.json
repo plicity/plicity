@@ -28,7 +28,7 @@
     "node": ">10.0.0"
   },
   "dependencies": {
-    "inquirer": "^7.1.0",
+    "chalk": "^3.0.0",
     "nunjucks": "^3.2.1",
     "ora": "^4.0.3",
     "recursive-copy": "^2.0.10",

@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 
 const {spawn} = require('child_process');
-const fs = require('fs');
 const path = require('path');
 const stream = require('stream');
-const {promisify} = require('util');
-const inquirer = require('inquirer');
+const chalk = require('chalk');
 const ora = require('ora');
 const copy = require('recursive-copy');
 const nunjucks = require('nunjucks');
@@ -92,15 +90,12 @@ const NJ_EXT = '.nj';
     }
   }
 
-  const plicityDir = `${dir}/plicity`;
+  const plicityDir = `${dir}/.plicity`;
 
   {
     const spinner = ora().start();
 
     try {
-      spinner.text = 'create npm package';
-      await spawn2('npm', ['init', '-y'], {cwd: plicityDir});
-
       spinner.text = 'install dependencies';
       await spawn2('npm', ['i', '--save', 'dotenv'], {cwd: plicityDir});
 
@@ -121,36 +116,12 @@ const NJ_EXT = '.nj';
   }
 
   {
-    const spinner = ora().start();
-
-    const packageJson = `${plicityDir}/package.json`;
-
-    try {
-      spinner.text = `add scripts - read ${packageJson}`;
-      const json = JSON.parse((await promisify(fs.readFile)(packageJson)).toString());
-      json.private = true;
-      json.scripts = json.scripts || {};
-      json.scripts.start = 'node start.js';
-      json.scripts.init = 'plicity init';
-      json.scripts.plicity = 'plicity';
-
-      spinner.text = `add scripts - write ${packageJson}`;
-      await promisify(fs.writeFile)(packageJson, JSON.stringify(json, undefined, '  '));
-
-      spinner.succeed();
-    } catch (e) {
-      spinner.fail();
-      console.error(e);
-      return die();
-    }
-  }
-
-
-
-  {
-    ora().info('1. please commit and push');
-    ora().info(`2. update ${plicityDir}/.env`)
-    ora().info(`3. initialize openshift: \`cd ${plicityDir}; npm run init\`.`);
+    console.log(`1. goto your project: ${chalk.blue(dir)}`);
+    console.log('2. commit and push');
+    console.log(`3. install pli executable: $ ${chalk.yellow('npm')} i -g @plicity/operator`);
+    console.log(`4. update ${chalk.blue('plicity.env')}`);
+    console.log(`5. initialize operator: $ ${chalk.yellow('pli')} init`);
+    console.log(`6. you can check your setup: $ ${chalk.yellow('pli')} check`);
   }
 
 })();

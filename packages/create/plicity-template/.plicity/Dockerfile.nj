@@ -1,6 +1,8 @@
 FROM node:12
 WORKDIR /usr/src/
 
+ARG NODE_ENV=production
+
 {% if not npm.strictSSL -%}
 RUN npm config set strict-ssl false
 {%- endif %}
